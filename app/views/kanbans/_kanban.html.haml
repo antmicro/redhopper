@@ -89,9 +89,11 @@
 							%span.icon.icon-attachment{title: t('.attachments_count')}= issue.attachments.count
 						- unless (assignee = issue.assigned_to).nil?
 							%span.icon.icon-user{title: t('.assigned_user')}
-								- if Setting.gravatar_enabled?
+								- if assignee.is_a?(Group)
+									%span{title: assignee.name}= assignee.name
+								- elsif Setting.gravatar_enabled?
 									= avatar(assignee, title: assignee.name(:firstname_lastname))
 								- else
-									%span{title: assignee.name(:firstname_lastname)}= assignee
+									%span{title: assignee.name(:firstname_lastname)}= assignee.name
 
 %hr{id: "kanban-#{kanban.id}-after", class: 'Column-dropzone'}
