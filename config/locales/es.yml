@@ -18,53 +18,53 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Redhopper.  If not, see <http://www.gnu.org/licenses/>.
 #
-en:
+es:
   kanbans:
     index:
-      issues_count: "Issues count"
-      sorted: "Sorted"
-      unsorted: "Unsorted"
+      issues_count: "Cantidad de Peticiones."
+      sorted: "Ordenados"
+      unsorted: "Sin ordenar"
     kanban:
-      move2top: "Move to top"
-      move2top_arrow: "Move to top arrow"
-      moveup: "Move up"
-      moveup_arrow: "Move up arrow"
-      movedown: "Move down"
-      movedown_arrow: "Move down arrow"
-      move2bottom: "Move to bottom"
-      move2bottom_arrow: "Move to bottom arrow"
-      goto_unsorted: "Move back to unsorted section"
-      goto_sorted: 'Move to sorted section'
-      notes_count: "Notes count."
-      attachments_count: "Attachments count."
-      assigned_user: "User assigned."
-      description: "Description filled in."
-      blocks: 'Blocks '
-      blocked_by: 'Blocked by '
-      block_with: 'Block with '
-      last_note: 'last note.'
-      unblock: 'Unblock.'
-      on_time: "On time"
-      overdue: "Overdue"
+      move2top: "Mover al inicio"
+      move2top_arrow: "Flecha doble hacia arriba"
+      moveup: "Mover arriba"
+      moveup_arrow: "Flecha simple hacia arriba"
+      movedown: "Mover abajo"
+      movedown_arrow: "Flecha simple hacia abajo"
+      move2bottom: "Mover al final"
+      move2bottom_arrow: "Flecha doble hacia abajo"
+      goto_unsorted: "Devolver a la sección sin ordenar"
+      goto_sorted: 'Mover a la sección ordenada'
+      notes_count: "Cantidad de notas."
+      attachments_count: "Cantidad de adjuntos."
+      assigned_user: "Usuario asignado."
+      description: "Descripción completa."
+      blocks: 'Bloquea a '
+      blocked_by: 'Bloqueado por '
+      block_with: 'Bloquear con '
+      last_note: 'última nota.'
+      unblock: 'Desbloquear.'
+      on_time: "En tiempo"
+      overdue: "Vencida"
       due_unit: 'd'
   settings:
     kanbans:
       configuration:
-        title: "Configuration"
+        title: "Configuración"
         hidden_trackers:
-          title: "Hidden trackers"
+          title: "Ocultar seguidores"
       feature_switches:
-        title: "Feature switches"
+        title: "Conmutadores de características"
     feature:
       move_back_to_unsorted:
-        title: "Move issue back to unsorted section"
-        description: "A sorted issue has so few valid reasons to go back to the unsorted section that we decided to disable this feature on purpose. Activate it wisely."
+        title: "Devolver una petición a la sección sin ordenar"
+        description: "Una petición ordenada tiene tan pocas razones para volver a la sección sin ordenar que decidimos deshabilitar esta característica a propósito. Actívelo con sabiduría."
       only_open_statuses:
-        title: "Only open statuses"
-        description: "Only displays columns for open statuses."
+        title: "Sólo estados abiertos"
+        description: "Sólo mostrar columnas para estados abiertos."
       hide_tracker_name:
-        title: "Hide tracker's name"
-        description: "Do not display the name of the tracker of an issue on the Kanban."
+        title: "Ocultar nombre del seguidor"
+        description: "No mostrar el nombre del seguidor de una petición en el tablero Kanban."
       display_description_tooltip:
-        title: "Description as tooltip"
-        description: "Displays the formated description as a tooltip."
+        title: "Descripción como ventana emergente"
+        description: "Mostrar la descripción en una ventana emergente con formato."
