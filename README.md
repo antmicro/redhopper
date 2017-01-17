@@ -2,7 +2,7 @@
 
 Kanban boards for Redmine, inspired by *Jira Agile* (formerly known as *Greenhopper*), but following its own path.
 
-Note: tested with Redmine ~> 3.0.3
+Compatibility and more info on Redmine's [plugins page](http://www.redmine.org/plugins/redhopper).
 
 ## Wait. But why?
 
