@@ -4,6 +4,8 @@ Kanban boards for Redmine, inspired by *Jira Agile* (formerly known as *Greenhop
 
 Compatibility and more info on Redmine's [plugins page](http://www.redmine.org/plugins/redhopper).
 
+Available translations: `de`, `en`, `es`, `fr`, `pt-BR`.
+
 ## Wait. But why?
 
 Yep, we are building yet another Kanban plugin for Redmine. The difference this time is the **extensive use of Redmine core concepts** (issues, trackers, workflow, etc.) instead of building everything from scratch.
