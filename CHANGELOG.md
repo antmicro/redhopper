@@ -12,4 +12,5 @@
 * [1.0.4] Updates copyright year (#14)
 * [1.0.5] Fixes crash when an issue is assigned to a group (#19)
 * [1.0.6] Adds spanish translation thanks to @lazki
-* [1.0.7] Adds german translation thanks to Peter Pfläging
+* [1.0.7] Adds german translation thanks to Peter Pfläging (#22)
+* [1.0.7] Updates copyright year (#23)
