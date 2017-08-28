@@ -14,3 +14,4 @@
 * [1.0.6] Adds spanish translation thanks to @lazki
 * [1.0.7] Adds german translation thanks to Peter Pfläging (#22)
 * [1.0.7] Updates copyright year (#23)
+* [1.0.8] Adds bulgarian translation thanks to Georgi I. Markov (#26)
