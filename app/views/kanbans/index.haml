@@ -20,7 +20,7 @@
 -#
 %h2 Kanbans
 
-%form
+%form{data: {cm_url: issues_context_menu_path}}
 	%ol.KanbanBoard
 		- @kanban_board.columns.each do |column|
 			%li.KanbanBoard-column.Column
@@ -43,4 +43,4 @@
 	= stylesheet_link_tag 'redhopper', :plugin => 'redhopper'
 	= javascript_include_tag 'redhopper', :plugin => 'redhopper'
 
-= context_menu issues_context_menu_path
+= context_menu
