@@ -20,7 +20,7 @@
 -#
 %h2 Kanbans
 
-%form
+%form{data: {cm_url: issues_context_menu_path}}
 	%ol.KanbanBoard
 		- @kanban_board.columns.each do |column|
 			%li.KanbanBoard-column.Column
@@ -43,4 +43,9 @@
 	= stylesheet_link_tag 'redhopper', :plugin => 'redhopper'
 	= javascript_include_tag 'redhopper', :plugin => 'redhopper'
 
-= context_menu issues_context_menu_path
+-# Behavior of `context_menu` changed in Redmine 3.4.0, see:
+-# https://framagit.org/infopiiaf/redhopper/issues/25
+- if method(:context_menu).arity == 0
+	= context_menu
+- else
+	= context_menu issues_context_menu_path
