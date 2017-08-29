@@ -36,11 +36,9 @@ class KanbanBoardTest < ActiveSupport::TestCase
     @dev = Role.create!(name: 'Dev')
 
     IssueStatus.delete_all
-    @done = IssueStatus.create!(name: 'Done', is_closed: true)
-    @doing = IssueStatus.create!(name: 'Doing')
-    @todo = IssueStatus.create!(name: 'To do')
-    @doing.move_lower && @todo.reload && @doing.reload
-    @done.move_to_bottom && @todo.reload && @doing.reload && @done.reload
+    @done = IssueStatus.create!(name: 'Done', is_closed: true, position: 3)
+    @doing = IssueStatus.create!(name: 'Doing', position: 2)
+    @todo = IssueStatus.create!(name: 'To do', position: 1)
 
     Tracker.delete_all
     @story = Tracker.create!(name: 'Story', default_status: @todo)
