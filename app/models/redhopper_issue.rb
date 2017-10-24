@@ -20,12 +20,14 @@
 #
 class RedhopperIssue < ActiveRecord::Base
   unloadable
-  resort!
+  acts_as_list
 
   belongs_to :issue
   attr_accessible :issue
 
   validates :issue, uniqueness: true
+
+  scope :ordered, -> { order(position: :asc) }
 
   def blocked_with_comment?
     blocked?
