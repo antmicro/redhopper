@@ -19,7 +19,7 @@
 # along with Redhopper.  If not, see <http://www.gnu.org/licenses/>.
 #
 gem 'acts_as_list'
-
+gem 'byebug'
 gem 'haml', '~> 4.0.6'
 
 group :development do
