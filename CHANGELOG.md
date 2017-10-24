@@ -16,3 +16,5 @@
 * [1.0.7] Updates copyright year (#23)
 * [1.0.8] Adds bulgarian translation thanks to Georgi I. Markov (#26)
 * [1.0.9] Fixes incompatibility with Redmine 3.4.x (#25)
+* [1.0.10] Fixes performance issue (#33)
+* [1.0.10] Fixes issue with disabled transitions (#32)
