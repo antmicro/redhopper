@@ -18,20 +18,19 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Redhopper.  If not, see <http://www.gnu.org/licenses/>.
 #
-gem 'acts_as_list'
+class MoveFromResortToActsAsList < ActiveRecord::Migration
+  def up
+    add_column :redhopper_issues, :position, :integer
 
-gem 'haml', '~> 4.0.6'
+    redhopper_issue = RedhopperIssue.where(first: true).first
+    counter = 1
+    while redhopper_issue.present?
+      redhopper_issue.insert_at(counter)
+      redhopper_issue = RedhopperIssue.find_by_id(redhopper_issue.next_id)
+      counter += 1
+    end
 
-group :development do
-	gem 'sass', '~> 3.4.15'
-	# Not the latest version becaus of following issue
-	# Bundler could not find compatible versions for gem "mime-types":
-  # In Gemfile:
-  #   copyright-header (~> 1.0.15) ruby depends on
-  #     github-linguist (~> 2.6) ruby depends on
-  #       mime-types (~> 1.19) ruby
-	#
-  #   mime-types (2.6.2)
-	# Hence does not mamange .rake files :(
-	gem 'copyright-header', '~> 1.0.8'
+    remove_column :redhopper_issues, :next_id
+    remove_column :redhopper_issues, :first
+  end
 end
