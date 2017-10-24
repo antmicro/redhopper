@@ -34,12 +34,16 @@ class KanbanBoard
 
 		RedhopperIssue.where(issue: project_issues).includes(:issue).ordered.each do |redhopper_issue|
 			issue = redhopper_issue.issue
-			column_for_issue_status(issue.status) << redhopper_issue
+			if issue_column = column_for_issue_status(issue.status)
+				issue_column << redhopper_issue
+			end
 			project_issues.delete issue
 		end
 
 		project_issues.each do |issue|
-			column_for_issue_status(issue.status) << RedhopperIssue.new(issue: issue)
+			if issue_column = column_for_issue_status(issue.status)
+				issue_column << RedhopperIssue.new(issue: issue)
+			end
 		end
 	end
 
