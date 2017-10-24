@@ -19,7 +19,6 @@
 # along with Redhopper.  If not, see <http://www.gnu.org/licenses/>.
 #
 gem 'acts_as_list'
-gem 'byebug'
 gem 'haml', '~> 4.0.6'
 
 group :development do
@@ -35,3 +34,5 @@ group :development do
 	# Hence does not mamange .rake files :(
 	gem 'copyright-header', '~> 1.0.8'
 end
+
+gem 'byebug', group: [:development, :test]
