@@ -18,3 +18,4 @@
 * [1.0.9] Fixes incompatibility with Redmine 3.4.x (#25)
 * [1.0.10] Fixes performance issue (#33)
 * [1.0.10] Fixes issue with disabled transitions (#32)
+* [1.O.11] Implements ACL (#31) : you will need to check them in _Administration > Roles and permissions_

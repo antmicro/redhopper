@@ -26,7 +26,7 @@ class KanbansControllerTest < ActionController::TestCase
 	setup do
     # Given
     Feature.stubs(:enabled).returns(false)
-		User.current = User.find(@request.session[:user_id] = 1)
+		User.current = User.find(@request.session[:user_id] = 2)
 
     Role.delete_all
     @dev = Role.create!(name: 'Dev')
@@ -47,6 +47,7 @@ class KanbansControllerTest < ActionController::TestCase
 
     Project.delete_all
     @project = Project.create! name: 'Test Project', identifier: 'test-project'
+		@project.enable_module!(:kanbans)
 
     IssuePriority.delete_all
     @priority = IssuePriority.create! name:'Normal'
@@ -61,9 +62,21 @@ class KanbansControllerTest < ActionController::TestCase
 		@kanban_issue_todo = RedhopperIssue.create! issue: @issue_todo
     @kanban_issue_doing = RedhopperIssue.create! issue: @issue_doing
     @kanban_issue_done = RedhopperIssue.create! issue: @issue_done
+
+		# Permissions
+		Member.create_principal_memberships(User.current, {project_ids: [@project.id], role_ids: [@dev.id]})
+		User.current.roles.first.add_permission!("view_issues")
 	end
 
-	def test_index
+	def test_index_unauthorized
+		get :index, :project_id => @project.id
+
+		assert_response 403
+	end
+
+	def test_index_authorized
+		authorize_current_user
+
 		get :index, :project_id => @project.id
 
 		assert_response :success
@@ -73,6 +86,8 @@ class KanbansControllerTest < ActionController::TestCase
 	end
 
 	def test_index_board_structure
+		authorize_current_user
+
 		get :index, :project_id => @project.id
 
 		assert_select columns, 3 do |columns|
@@ -108,5 +123,9 @@ class KanbansControllerTest < ActionController::TestCase
 
 	def unsorted_column_cards
 		'ul .Kanban'
+	end
+
+	def authorize_current_user
+		User.current.roles.first.add_permission!("kanbans")
 	end
 end

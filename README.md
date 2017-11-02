@@ -20,8 +20,9 @@ No need to define columns, your issue statuses are good enough. No need to defin
   - Move the plugin to the `plugins` folder in redmine's root folder
   - Install the missing gems with `bundle install` (within redmine's root folder and not redhopper's one)
   - Run the migrations of the plugin: `RAILS_ENV=production bundle exec rake redmine:plugins:migrate NAME=redhopper`
-2. Activate the *Kanbans* module in your project configuration.
-3. Eventually, activate additional features in Redmine Administration/Plugins/Redhopper Settings.
+1. Configure roles and permissions in your Redmine configuration.
+1. Activate the *Kanbans* module in your project configuration.
+1. Eventually, activate additional features in Redmine Administration/Plugins/Redhopper Settings.
 
 ### *Out-of-the-box* behaviour
 
