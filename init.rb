@@ -27,7 +27,7 @@ Redmine::Plugin.register :redhopper do
   author_url 'http://www.infopiiaf.fr'
 
   project_module :kanbans do
-    permission :kanbans, { :kanbans => [:index] }, :public => true
+    permission :kanbans, kanbans: :index
   end
 
   menu :project_menu, :kanbans, { :controller => 'kanbans', :action => 'index' }, :caption => 'Kanbans', :after => :activity, :param => :project_id

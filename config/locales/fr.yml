@@ -19,6 +19,7 @@
 # along with Redhopper.  If not, see <http://www.gnu.org/licenses/>.
 #
 fr:
+  permission_kanbans: "Afficher le tableau de kanbans"
   kanbans:
     index:
       issues_count: "Nombre de demandes."
