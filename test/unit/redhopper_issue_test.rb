@@ -31,7 +31,8 @@ class RedhopperIssueTest < ActiveSupport::TestCase
            :enabled_modules,
            :enumerations,
            :trackers,
-           :projects_trackers
+           :projects_trackers,
+           :journals
 
   def test_sortable_in_sorted_zone
     # Given
@@ -187,4 +188,34 @@ class RedhopperIssueTest < ActiveSupport::TestCase
     assert_equal '#92cfce', result
   end
 
+  test "comments returns visible journals without empty notes" do
+    # Given
+    redhopper_issue = RedhopperIssue.new issue: Issue.find(1)
+    journal = Journal.find(1)
+    journal.update_columns(notes: "")
+    # when
+    result = redhopper_issue.comments.length
+    # Then
+    assert_equal 1, result
+  end
+
+  test "comments returns visible journals without notes set to nil" do
+    # Given
+    redhopper_issue = RedhopperIssue.new issue: Issue.find(1)
+    journal = Journal.find(1)
+    journal.update_columns(notes: nil)
+    # when
+    result = redhopper_issue.comments.length
+    # Then
+    assert_equal 1, result
+  end
+
+  test "comments returns visible journals" do
+    # Given
+    redhopper_issue = RedhopperIssue.new issue: Issue.find(1)
+    # when
+    result = redhopper_issue.comments.length
+    # Then
+    assert_equal 2, result
+  end
 end

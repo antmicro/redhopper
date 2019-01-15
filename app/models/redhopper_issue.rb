@@ -50,8 +50,8 @@ class RedhopperIssue < ActiveRecord::Base
   end
 
   def comments
-    # Some issue updates set notes to nil or "" hence the inline SQL :(
-    issue.journals.visible.where("LENGTH(journals.notes) > 0")
+    # Some issue updates set notes to nil or ""
+    issue.journals.visible.where.not(journals: {notes: ""})
   end
 
   def sortable?
