@@ -19,3 +19,4 @@
 * [1.0.10] Fixes performance issue (#33)
 * [1.0.10] Fixes issue with disabled transitions (#32)
 * [1.O.11] Implements ACL (#31) : you will need to check them in _Administration > Roles and permissions_
+* [1.O.12] Fixes issue with Microsoft SQL (Express) (#35)
