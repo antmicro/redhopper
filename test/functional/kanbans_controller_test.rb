@@ -69,7 +69,7 @@ class KanbansControllerTest < ActionController::TestCase
 	end
 
 	def test_index_unauthorized
-		get :index, :project_id => @project.id
+		get :index, params: { project_id: @project.id }
 
 		assert_response 403
 	end
@@ -77,7 +77,7 @@ class KanbansControllerTest < ActionController::TestCase
 	def test_index_authorized
 		authorize_current_user
 
-		get :index, :project_id => @project.id
+		get :index, params: { project_id: @project.id }
 
 		assert_response :success
 		assert_template 'index'
@@ -88,7 +88,7 @@ class KanbansControllerTest < ActionController::TestCase
 	def test_index_board_structure
 		authorize_current_user
 
-		get :index, :project_id => @project.id
+		get :index, params: { project_id: @project.id }
 
 		assert_select columns, 3 do |columns|
 			todo_column, doing_column, done_column = columns

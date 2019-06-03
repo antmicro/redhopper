@@ -18,8 +18,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Redhopper.  If not, see <http://www.gnu.org/licenses/>.
 #
+source 'https://rubygems.org'
+
 gem 'acts_as_list'
-gem 'haml', '~> 4.0.6'
+gem 'haml', '~> 5.1.1'
 
 group :development do
 	gem 'sass', '~> 3.4.15'
@@ -36,3 +38,7 @@ group :development do
 end
 
 gem 'byebug', group: [:development, :test]
+
+group :test do
+  gem 'rails-controller-testing', '~> 1.0.4'
+end

@@ -19,8 +19,6 @@
 # along with Redhopper.  If not, see <http://www.gnu.org/licenses/>.
 #
 class RedhopperIssuesController < ApplicationController
-  unloadable
-
   def create
     redhopper_issue = RedhopperIssue.create(issue: Issue.find(params[:issue_id]))
 

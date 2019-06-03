@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Redhopper.  If not, see <http://www.gnu.org/licenses/>.
 #
-class CreateRedhopperIssues < ActiveRecord::Migration
+class CreateRedhopperIssues < ActiveRecord::Migration[4.2]
   def change
     create_table :redhopper_issues do |t|
       t.references :issue, index: true, foreign_key: true, null: false
