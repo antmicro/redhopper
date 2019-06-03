@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Redhopper.  If not, see <http://www.gnu.org/licenses/>.
 #
-class MoveFromResortToActsAsList < ActiveRecord::Migration
+class MoveFromResortToActsAsList < ActiveRecord::Migration[4.2]
   def up
     add_column :redhopper_issues, :position, :integer
 

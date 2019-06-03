@@ -19,7 +19,7 @@
 # along with Redhopper.  If not, see <http://www.gnu.org/licenses/>.
 #
 # Migration to add the necessary fields to a resorted model
-class AddResortFieldsToRedhopperIssues < ActiveRecord::Migration
+class AddResortFieldsToRedhopperIssues < ActiveRecord::Migration[4.2]
   # Adds Resort fields, next_id and first, and indexes to a given model
   def change
     add_column :redhopper_issues, :next_id, :integer

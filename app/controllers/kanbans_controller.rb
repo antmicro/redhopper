@@ -19,7 +19,6 @@
 # along with Redhopper.  If not, see <http://www.gnu.org/licenses/>.
 #
 class KanbansController < ApplicationController
-  unloadable
 
   before_action :find_project_by_project_id, :authorize
 

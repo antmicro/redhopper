@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Redhopper.  If not, see <http://www.gnu.org/licenses/>.
 #
-class AddBlockedToRedhopperIssues < ActiveRecord::Migration
+class AddBlockedToRedhopperIssues < ActiveRecord::Migration[4.2]
   def change
     add_column :redhopper_issues, :blocked, :boolean, default: false
   end

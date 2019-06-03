@@ -43,7 +43,7 @@ class RedhopperIssuesControllerTest < ActionController::TestCase
     requested_issue = Issue.find(2)
     # When
     assert_difference('RedhopperIssue.count', +1) do
-      post :create, :issue_id => requested_issue.id
+      post :create, params: { issue_id: requested_issue.id }
     end
     # Then
     assert_redirected_to project_kanbans_path(requested_issue.project)
@@ -53,7 +53,7 @@ class RedhopperIssuesControllerTest < ActionController::TestCase
     # Given
     to_move_up = RedhopperIssue.create! issue: Issue.find(2)
     # When
-    get :move, id: to_move_up.id, target_id: @kanban.id, insert: 'before'
+    get :move, params: { id: to_move_up.id, target_id: @kanban.id, insert: 'before' }
     # Then
     assert_equal [to_move_up, @kanban], RedhopperIssue.ordered
     assert_redirected_to project_kanbans_path(to_move_up.issue.project)
@@ -64,7 +64,7 @@ class RedhopperIssuesControllerTest < ActionController::TestCase
     second_kanban = RedhopperIssue.create! issue: Issue.find(2)
     to_move_up = RedhopperIssue.create! issue: Issue.find(3)
     # When
-    get :move, id: to_move_up.id, target_id: second_kanban.id, insert: 'before'
+    get :move, params: { id: to_move_up.id, target_id: second_kanban.id, insert: 'before' }
     # Then
     assert_equal [@kanban, to_move_up, second_kanban], RedhopperIssue.ordered
     assert_redirected_to project_kanbans_path(to_move_up.issue.project)
@@ -74,7 +74,7 @@ class RedhopperIssuesControllerTest < ActionController::TestCase
     # Given
     to_move_up = RedhopperIssue.create! issue: Issue.find(2)
     # When
-    get :move, id: @kanban.id, target_id: to_move_up.id, insert: 'after'
+    get :move, params: { id: @kanban.id, target_id: to_move_up.id, insert: 'after' }
     # Then
     assert_equal [to_move_up, @kanban], RedhopperIssue.ordered
     assert_redirected_to project_kanbans_path(to_move_up.issue.project)
@@ -82,7 +82,7 @@ class RedhopperIssuesControllerTest < ActionController::TestCase
 
   def test_block
     # When
-    get :block, id: @kanban.id
+    get :block, params: { id: @kanban.id }
     # Then
     assert @kanban.reload.blocked?
     assert_redirected_to project_kanbans_path(@kanban.issue.project)
@@ -92,7 +92,7 @@ class RedhopperIssuesControllerTest < ActionController::TestCase
     # Given
     blocked_issue = RedhopperIssue.create! issue: Issue.find(2), blocked: true
     # When
-    get :unblock, id: @kanban.id
+    get :unblock, params: { id: @kanban.id }
     # Then
     assert_not @kanban.reload.blocked?
     assert_redirected_to project_kanbans_path(@kanban.issue.project)
@@ -103,7 +103,7 @@ class RedhopperIssuesControllerTest < ActionController::TestCase
     requested_issue = @kanban.issue
     # When
     assert_difference('RedhopperIssue.count', -1) do
-      post :delete, :id => @kanban
+      post :delete, params: { :id => @kanban }
     end
     # Then
     assert_redirected_to project_kanbans_path(requested_issue.project)

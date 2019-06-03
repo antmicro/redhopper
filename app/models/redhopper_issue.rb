@@ -19,11 +19,9 @@
 # along with Redhopper.  If not, see <http://www.gnu.org/licenses/>.
 #
 class RedhopperIssue < ActiveRecord::Base
-  unloadable
   acts_as_list
 
   belongs_to :issue
-  attr_accessible :issue
 
   validates :issue, uniqueness: true
 

@@ -24,11 +24,12 @@ Either way, please try to stick to the following rules.
 We recommend you develop and test the plugin within a test instance of Redmine.
 
 To be able to work on the tool (`RAILS_ENV=development`):
-0. install Redmine: [how to install Redmine](http://www.redmine.org/projects/redmine/wiki/RedmineInstall)
-0. install Redhopper: [how to install the plugin](https://git.framasoft.org/infopiiaf/redhopper#how-does-it-work)
-0. in order to see if everything is ok, in Redmine root directory:
-    0. run the tests: `bundle exec rake redmine:plugins:test NAME=redhopper`
-    0. start Redmine: `bundle exec rails server`
+
+1. install Redmine: [how to install Redmine](http://www.redmine.org/projects/redmine/wiki/RedmineInstall)
+1. install Redhopper: [how to install the plugin](https://git.framasoft.org/infopiiaf/redhopper#how-does-it-work)
+1. in order to see if everything is ok, in Redmine root directory:
+    1. run the tests: `bundle exec rails test plugins/redhopper/test/**/*`
+    1. start Redmine: `bundle exec rails server`
 
 Now you can work on improving Redhopper.
 
@@ -38,7 +39,7 @@ Your patch will have more chance to be included within the tool if your improvem
 
 At this moment, you should already know how to run the tests, but in case you forgot what you've just read ;-)
 ```
-bundle exec rake redmine:plugins:test NAME=redhopper
+bundle exec rails test plugins/redhopper/test/**/*
 ```
 
 ### CSS
@@ -57,13 +58,13 @@ _N.B.: Redmine copies plugins' assets at startup, so you have to **restart Redmi
 
 We're (mostly) using CSS conventions inspired by [SMACSS](https://smacss.com/book/categorizing), [BEM](https://en.bem.info/method/definitions/) and [SUIT CSS](http://suitcss.github.io/). It relies on a few principles :
 
-0. Style CSS classes, not HTML elements or IDs;
-0. Make a clear distinction between a UI component, its states and subcomponents:
- * `.Component`: capitalized noun;
- * `.Component.is-active`: `is-` prefixed + adjective;
- * `.Component-subcomponent`: `-` suffixed + lowercase noun;
-0. An HTML element may be a component and a subcomponent :
- * the _component_ class is for cosmetics;
- * the _subcomponent_ class is for positioning.
+1. Style CSS classes, not HTML elements or IDs;
+1. Make a clear distinction between a UI component, its states and subcomponents:
+    * `.Component`: capitalized noun;
+    * `.Component.is-active`: `is-` prefixed + adjective;
+    * `.Component-subcomponent`: `-` suffixed + lowercase noun;
+1. An HTML element may be a component and a subcomponent :
+    * the _component_ class is for cosmetics;
+    * the _subcomponent_ class is for positioning.
 
 For instance, a kanban board might use classes like `KanbanBoard`, `KanbanBoard-column`, `Column`, `Column-kanban`, `Kanban`, `Kanban.is-blocked`…
