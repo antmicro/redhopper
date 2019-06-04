@@ -30,7 +30,9 @@ class RedhopperIssuesController < ApplicationController
     target_issue = RedhopperIssue.find(params[:target_id])
 
     new_position = target_issue.position
-    new_position += 1 if "after" == params[:insert]
+    if params[:insert] == "after" && target_issue.position < issue_to_move.position
+      new_position += 1
+    end
     issue_to_move.insert_at new_position
 
     redirect_to project_kanbans_path(issue_to_move.issue.project)

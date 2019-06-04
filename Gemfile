@@ -20,7 +20,7 @@
 #
 source 'https://rubygems.org'
 
-gem 'acts_as_list'
+gem 'acts_as_list', '~> 0.9.17'
 gem 'haml', '~> 5.1.1'
 
 group :development do
