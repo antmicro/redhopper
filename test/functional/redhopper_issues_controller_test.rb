@@ -35,12 +35,14 @@ class RedhopperIssuesControllerTest < ActionController::TestCase
            :projects_trackers
 
   def setup
-    @kanban = RedhopperIssue.create! issue: Issue.find(1)
+    @first_kanban = RedhopperIssue.create! issue: Issue.find(1)
+    @second_kanban = RedhopperIssue.create! issue: Issue.find(2)
+    @third_kanban = RedhopperIssue.create! issue: Issue.find(3)
   end
 
   def test_create
     # Given
-    requested_issue = Issue.find(2)
+    requested_issue = Issue.find(4)
     # When
     assert_difference('RedhopperIssue.count', +1) do
       post :create, params: { issue_id: requested_issue.id }
@@ -49,61 +51,84 @@ class RedhopperIssuesControllerTest < ActionController::TestCase
     assert_redirected_to project_kanbans_path(requested_issue.project)
   end
 
-  def test_move_in_first_place
+  def test_button_move_in_first_place
     # Given
-    to_move_up = RedhopperIssue.create! issue: Issue.find(2)
     # When
-    get :move, params: { id: to_move_up.id, target_id: @kanban.id, insert: 'before' }
+    get :move, params: { id: @second_kanban.id, target_id: @first_kanban.id }
     # Then
-    assert_equal [to_move_up, @kanban], RedhopperIssue.ordered
-    assert_redirected_to project_kanbans_path(to_move_up.issue.project)
+    assert_equal [1, 2], [@second_kanban, @first_kanban].map(&:reload).map(&:position)
+    assert_redirected_to project_kanbans_path(@second_kanban.issue.project)
   end
 
-  def test_move_up_in_second_place
+  def test_button_move_up_in_second_place
     # Given
-    second_kanban = RedhopperIssue.create! issue: Issue.find(2)
-    to_move_up = RedhopperIssue.create! issue: Issue.find(3)
     # When
-    get :move, params: { id: to_move_up.id, target_id: second_kanban.id, insert: 'before' }
+    get :move, params: { id: @third_kanban.id, target_id: @second_kanban.id }
     # Then
-    assert_equal [@kanban, to_move_up, second_kanban], RedhopperIssue.ordered
-    assert_redirected_to project_kanbans_path(to_move_up.issue.project)
+    assert_equal [1, 2, 3], [@first_kanban, @third_kanban, @second_kanban].map(&:reload).map(&:position)
+    assert_redirected_to project_kanbans_path(@third_kanban.issue.project)
   end
 
-  def test_move_down
+  def test_button_move_down
     # Given
-    to_move_up = RedhopperIssue.create! issue: Issue.find(2)
     # When
-    get :move, params: { id: @kanban.id, target_id: to_move_up.id, insert: 'after' }
+    get :move, params: { id: @first_kanban.id, target_id: @second_kanban.id }
     # Then
-    assert_equal [to_move_up, @kanban], RedhopperIssue.ordered
-    assert_redirected_to project_kanbans_path(to_move_up.issue.project)
+    assert_equal [1, 2], [@second_kanban, @first_kanban].map(&:reload).map(&:position)
+    assert_redirected_to project_kanbans_path(@first_kanban.issue.project)
+  end
+
+  def test_drag_and_drop_move_in_first_place
+    # Given
+    # When
+    get :move, params: { id: @second_kanban.id, target_id: @first_kanban.id, insert: "before" }
+    # Then
+    assert_equal [1, 2, 3], [@second_kanban, @first_kanban, @third_kanban].map(&:reload).map(&:position)
+    assert_redirected_to project_kanbans_path(@second_kanban.issue.project)
+  end
+
+  def test_drag_and_drop_move_up_in_second_place
+    # Given
+    # When
+    get :move, params: { id: @third_kanban.id, target_id: @first_kanban.id, insert: "after"}
+    # Then
+    assert_equal [1, 2, 3], [@first_kanban, @third_kanban, @second_kanban].map(&:reload).map(&:position)
+    assert_redirected_to project_kanbans_path(@third_kanban.issue.project)
+  end
+
+  def test_drag_and_drop_move_down
+    # Given
+    # When
+    get :move, params: { id: @first_kanban.id, target_id: @second_kanban.id, insert: "after" }
+    # Then
+    assert_equal [1, 2, 3], [@second_kanban, @first_kanban, @third_kanban].map(&:reload).map(&:position)
+    assert_redirected_to project_kanbans_path(@first_kanban.issue.project)
   end
 
   def test_block
     # When
-    get :block, params: { id: @kanban.id }
+    get :block, params: { id: @first_kanban.id }
     # Then
-    assert @kanban.reload.blocked?
-    assert_redirected_to project_kanbans_path(@kanban.issue.project)
+    assert @first_kanban.reload.blocked?
+    assert_redirected_to project_kanbans_path(@first_kanban.issue.project)
   end
 
   def test_unblock
     # Given
-    blocked_issue = RedhopperIssue.create! issue: Issue.find(2), blocked: true
+    blocked_issue = RedhopperIssue.create! issue: Issue.find(4), blocked: true
     # When
-    get :unblock, params: { id: @kanban.id }
+    get :unblock, params: { id: @first_kanban.id }
     # Then
-    assert_not @kanban.reload.blocked?
-    assert_redirected_to project_kanbans_path(@kanban.issue.project)
+    assert_not @first_kanban.reload.blocked?
+    assert_redirected_to project_kanbans_path(@first_kanban.issue.project)
   end
 
   def test_delete
     # Given
-    requested_issue = @kanban.issue
+    requested_issue = @first_kanban.issue
     # When
     assert_difference('RedhopperIssue.count', -1) do
-      post :delete, params: { :id => @kanban }
+      post :delete, params: { :id => @first_kanban }
     end
     # Then
     assert_redirected_to project_kanbans_path(requested_issue.project)
