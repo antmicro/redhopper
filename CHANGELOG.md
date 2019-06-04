@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.x branch
+
+* [2.0.0] Compatible with Redmine 4, but not any lower anymore (#44)
+* [2.0.0] Fixes issues while ordering kanbans (#45)
+
 ## 1.0.x branch
 
 * [1.0.1] Portuguese/Brasil translation thanks to @fabiano-kuss

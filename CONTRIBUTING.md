@@ -7,14 +7,14 @@ Feel free to improve this contribution guide.
 ## Provide feedback
 
 1. You can email us at **redhopper (at) infopiiaf.fr** (French and English spoken);
-2. Open an issue on [Framagit](https://git.framasoft.org/infopiiaf/redhopper) (which uses [Gitlab CE](https://about.gitlab.com/features/#community)).
+2. Open an issue on [Framagit](https://framagit.org/infopiiaf/redhopper) (which uses [Gitlab CE](https://about.gitlab.com/features/#community)).
 
 And let's talk about it!
 
 ## Provide code
 
 There are two ways to provide code for Redhopper, the first one being the preferred one:
-1. Fork the project on [Framagit](https://git.framasoft.org/infopiiaf/redhopper) and propose a [merge request](https://git.framasoft.org/help/gitlab-basics/add-merge-request.md);
+1. Fork the project on [Framagit](https://framagit.org/infopiiaf/redhopper) and propose a [merge request](https://framagit.org/help/gitlab-basics/add-merge-request.md);
 2. Send a git patch to **redhopper (at) infopiiaf.fr** (French and English spoken).
 
 Either way, please try to stick to the following rules.
@@ -26,7 +26,7 @@ We recommend you develop and test the plugin within a test instance of Redmine.
 To be able to work on the tool (`RAILS_ENV=development`):
 
 1. install Redmine: [how to install Redmine](http://www.redmine.org/projects/redmine/wiki/RedmineInstall)
-1. install Redhopper: [how to install the plugin](https://git.framasoft.org/infopiiaf/redhopper#how-does-it-work)
+1. install Redhopper: [how to install the plugin](https://framagit.org/infopiiaf/redhopper/tree/master#how-does-it-work)
 1. in order to see if everything is ok, in Redmine root directory:
     1. run the tests: `bundle exec rails test plugins/redhopper/test/**/*`
     1. start Redmine: `bundle exec rails server`
