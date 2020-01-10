@@ -62,7 +62,7 @@ de:
         title: "Tickets können zurück zu Unsortiert geschoben werden"
         description: "Ein einmal einsortiertes Ticket hat wenig Gründe wieder in den unsortierten Bereich bewegt zu werden. Bitte daher mit Bedacht aktivieren."
       only_open_statuses:
-        title: "Nur aktive Spaltne anzeigen"
+        title: "Nur aktive Spalten anzeigen"
         description: "In der Ansicht nur Spalten mit Inhalt anzeigen."
       hide_tracker_name:
         title: "Trackernamen verbergen"
