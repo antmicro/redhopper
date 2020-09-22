@@ -39,6 +39,6 @@ end
 
 gem 'byebug', group: [:development, :test]
 
-group :test do
-  gem 'rails-controller-testing', '~> 1.0.4'
-end
+#group :test do
+#  gem 'rails-controller-testing', '~> 1.0.4'
+#end
